@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Conference Guestbook{% endblock %}
+
+{% block body %}
+    <h2>Give your feedback!</h2>
+
+    {% for company in companies %}
+        <h4>{{ company }} <a href="/company/{{ company.id }}">View</a> </h4>
+        
+            
+        
+    {% endfor %}
+{% endblock %}

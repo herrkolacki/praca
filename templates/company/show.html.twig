@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Company - {{ company }}{% endblock %}
+
+{% block body %}
+    <h2>{{ company }} Company</h2>
+
+    {% if positions|length > 0 %}
+        {% for position in positions %}
+            
+
+            <h4>{{ position.title }}</h4>
+            <small>
+                {{ position.date|format_datetime('medium', 'short') }}
+            </small>
+
+            <p>{{ position.description }}</p>
+        {% endfor %}
+    {% else %}
+        <div>No position in this company.</div>
+    {% endif %}
+{% endblock %}
