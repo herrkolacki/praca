@@ -10,7 +10,7 @@ class AddressController extends AbstractController
 {
     #[Route('/address', name: 'app_address')]
     public function index(): Response
-    {
+    {  
         return $this->render('address/index.html.twig', [
             'controller_name' => 'AddressController',
         ]);
