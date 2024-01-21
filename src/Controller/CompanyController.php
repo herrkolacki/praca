@@ -17,8 +17,8 @@ class CompanyController extends AbstractController
     #[Route('/', name: 'homepage')]
     public function index(Request $request, Environment $twig, CompanyRepository $companyRepository): Response
     {  
-        var_dump($companyRepository->findAllGreaterThanPrice('t'));
-
+        
+        
         return $this->render('company/index.html.twig', [
                            'companies' => $companyRepository->findByExampleField('tpay', 4)
                        ]);

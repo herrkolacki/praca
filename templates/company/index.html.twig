@@ -1,14 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Conference Guestbook{% endblock %}
+{% block title %}Lista Firm{% endblock %}
 
 {% block body %}
-    <h2>Give your feedback!</h2>
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 12px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 1px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h4>lista firm</h4>
 
     {% for company in companies %}
-        <h4>{{ company }} <a href="/company/{{ company.id }}">View</a> </h4>
-        
-            
-        
+        <p>{{ company }} <a href="/company/{{ company.id }}">View</a> </p>
+     
     {% endfor %}
+</div>    
 {% endblock %}
