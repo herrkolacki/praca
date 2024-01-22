@@ -6,6 +6,7 @@ use App\Repository\CompanyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: CompanyRepository::class)]
 class Company
@@ -39,9 +40,16 @@ class Company
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $kind = null;
 
+    #[ORM\OneToMany(mappedBy: 'company', targetEntity: Address::class)]
+    private Collection $address;
+
+    #[ORM\Column(type: 'uuid')]
+    private ?Uuid $uuid = null;
+
     public function __construct()
     {
         $this->positions = new ArrayCollection();
+        $this->address = new ArrayCollection();
     }
 
 
@@ -165,6 +173,48 @@ class Company
     public function setKind(?string $kind): static
     {
         $this->kind = $kind;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Address>
+     */
+    public function getAddress(): Collection
+    {
+        return $this->address;
+    }
+
+    public function addAddress(Address $address): static
+    {
+        if (!$this->address->contains($address)) {
+            $this->address->add($address);
+            $address->setCompany($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAddress(Address $address): static
+    {
+        if ($this->address->removeElement($address)) {
+            // set the owning side to null (unless already changed)
+            if ($address->getCompany() === $this) {
+                $address->setCompany(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getUuid(): ?Uuid
+    {
+        return $this->uuid;
+    }
+
+    public function setUuid(Uuid $uuid): static
+    {
+        $this->uuid = $uuid;
 
         return $this;
     }

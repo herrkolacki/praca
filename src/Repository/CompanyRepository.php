@@ -39,6 +39,12 @@ class CompanyRepository extends ServiceEntityRepository
     }
 
 
+    public function findAll(): array
+    {
+        return $this->findBy([], ['id' => 'DESC']);
+    }
+
+
     public function findAllGreaterThanPrice(string $name): array
     {
         $conn = $this->getEntityManager()->getConnection();
