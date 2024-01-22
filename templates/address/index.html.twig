@@ -16,5 +16,12 @@
         <li>Your controller at <code><a href="{{ '/var/www/praca/src/Controller/AddressController.php'|file_link(0) }}">src/Controller/AddressController.php</a></code></li>
         <li>Your template at <code><a href="{{ '/var/www/praca/templates/address/index.html.twig'|file_link(0) }}">templates/address/index.html.twig</a></code></li>
     </ul>
+
+    <h4>lista firm</h4>
+
+    {% for company in companies %}
+        <p>{{ company }} <a href="/company/{{ company.id }}">View</a> </p>
+     
+    {% endfor %}
 </div>
 {% endblock %}
